@@ -14,6 +14,7 @@ set(CMAKE_C_EXTENSIONS ON)
 
 # My settings
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "build")
+set (CONFIG_DIR ${CMAKE_SOURCE_DIR}/Config)
 set (BOOTUTIL_DIR ${CMAKE_SOURCE_DIR}/External/bootutil)
 set (TINYCRYPT_DIR ${CMAKE_SOURCE_DIR}/External/tinycrypt/lib)
 set(bootutil_srcs
@@ -78,6 +79,16 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${bootutil_srcs}
 )
 
+# Add include paths to vscode
+include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    # Add user defined include paths
+    ${BOOTUTIL_DIR}/include
+    ${BOOTUTIL_DIR}/src
+    ${TINYCRYPT_DIR}/include
+    ${TINYCRYPT_DIR}/source
+    ${CONFIG_DIR}
+)
+
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
@@ -85,6 +96,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${BOOTUTIL_DIR}/src
     ${TINYCRYPT_DIR}/include
     ${TINYCRYPT_DIR}/source
+    ${CONFIG_DIR}
 )
 
 # Add project symbols (macros)
