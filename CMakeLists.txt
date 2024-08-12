@@ -17,6 +17,7 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "build")
 set (CONFIG_DIR ${CMAKE_SOURCE_DIR}/Config)
 set (BOOTUTIL_DIR ${CMAKE_SOURCE_DIR}/External/bootutil)
 set (TINYCRYPT_DIR ${CMAKE_SOURCE_DIR}/External/tinycrypt/lib)
+# set (MBEDTLS_DIR ${CMAKE_SOURCE_DIR}/External/mbedtls/include)
 set(bootutil_srcs
     ${BOOTUTIL_DIR}/src/boot_record.c
     ${BOOTUTIL_DIR}/src/bootutil_misc.c
@@ -77,6 +78,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     ${crypto_srcs}
     ${bootutil_srcs}
+    ${MBEDTLS_DIR}
 )
 
 # # Add include paths to vscode
@@ -97,6 +99,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${TINYCRYPT_DIR}/include
     ${TINYCRYPT_DIR}/source
     ${CONFIG_DIR}
+    ${MBEDTLS_DIR}
 )
 
 # Add project symbols (macros)

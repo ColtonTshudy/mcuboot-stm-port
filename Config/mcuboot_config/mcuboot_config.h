@@ -7,6 +7,11 @@
 #define MCUBOOT_SWAP_USING_MOVE 1
 
 /*
+ * Encrypt firmware images
+ */
+// #define MCUBOOT_ENC_IMAGES 1
+
+/*
  * Signature types
  *
  * You must choose exactly one signature type - check bootloader.conf

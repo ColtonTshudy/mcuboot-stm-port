@@ -57,12 +57,6 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
-#define TEST_MACRO(str, ...)                                                \
-  do                                                                        \
-  {                                                                         \
-    HAL_UART_Transmit(&huart2, (uint8_t *)str, sizeof(str), HAL_MAX_DELAY); \
-  } while (0)
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -86,7 +80,7 @@ void do_boot(struct boot_rsp *rsp)
 
   // Jump to executable code in firmware block 1
   __set_MSP(*(__IO uint32_t *)entry_addr);
-  ((void (*)(void))entry_addr);
+  ((void (*)(void))entry_addr)(); // call "main" in firmware, essentially
 
   FIH_PANIC; /* It should not get here */
 }
@@ -131,7 +125,6 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    TEST_MACRO("test", 1, 2, 3);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
