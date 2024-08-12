@@ -41,7 +41,7 @@ set(crypto_srcs
     ${TINYCRYPT_DIR}/source/utils.c
 )
 set(my_srcs
-    ${CMAKE_SOURCE_DIR}/Core/Src/flash_map_backend.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm_mcuboot.c
 )
 
 # Define the build type
