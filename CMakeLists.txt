@@ -14,7 +14,8 @@ set(CMAKE_C_EXTENSIONS ON)
 
 # My settings
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "build")
-
+set (BOOTUTIL_DIR ${CMAKE_SOURCE_DIR}/External/bootutil)
+set (CRYPT_DIR ${CMAKE_SOURCE_DIR}/External/tinycrypt/lib)
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -51,11 +52,15 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    ${CRYPT_DIR}/source
+    ${BOOTUTIL_DIR}/src
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    ${CRYPT_DIR}/include
+    ${BOOTUTIL_DIR}/include
 )
 
 # Add project symbols (macros)
