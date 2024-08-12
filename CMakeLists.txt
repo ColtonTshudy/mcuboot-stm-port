@@ -15,7 +15,29 @@ set(CMAKE_C_EXTENSIONS ON)
 # My settings
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "build")
 set (BOOTUTIL_DIR ${CMAKE_SOURCE_DIR}/External/bootutil)
-set (CRYPT_DIR ${CMAKE_SOURCE_DIR}/External/tinycrypt/lib)
+set (TINYCRYPT_DIR ${CMAKE_SOURCE_DIR}/External/tinycrypt/lib)
+set(bootutil_srcs
+    ${BOOTUTIL_DIR}/src/boot_record.c
+    ${BOOTUTIL_DIR}/src/bootutil_misc.c
+    ${BOOTUTIL_DIR}/src/bootutil_public.c
+    ${BOOTUTIL_DIR}/src/caps.c
+    ${BOOTUTIL_DIR}/src/encrypted.c
+    ${BOOTUTIL_DIR}/src/fault_injection_hardening.c
+    ${BOOTUTIL_DIR}/src/fault_injection_hardening_delay_rng_mbedtls.c
+    ${BOOTUTIL_DIR}/src/image_ecdsa.c
+    ${BOOTUTIL_DIR}/src/image_ed25519.c
+    ${BOOTUTIL_DIR}/src/image_rsa.c
+    ${BOOTUTIL_DIR}/src/image_validate.c
+    ${BOOTUTIL_DIR}/src/loader.c
+    ${BOOTUTIL_DIR}/src/swap_misc.c
+    ${BOOTUTIL_DIR}/src/swap_move.c
+    ${BOOTUTIL_DIR}/src/swap_scratch.c
+    ${BOOTUTIL_DIR}/src/tlv.c
+)
+set(crypto_srcs
+    ${TINYCRYPT_DIR}/source/sha256.c
+    ${TINYCRYPT_DIR}/source/utils.c
+)
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -52,15 +74,17 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
-    ${CRYPT_DIR}/source
-    ${BOOTUTIL_DIR}/src
+    ${crypto_srcs}
+    ${bootutil_srcs}
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
-    ${CRYPT_DIR}/include
     ${BOOTUTIL_DIR}/include
+    ${BOOTUTIL_DIR}/src
+    ${TINYCRYPT_DIR}/include
+    ${TINYCRYPT_DIR}/source
 )
 
 # Add project symbols (macros)
