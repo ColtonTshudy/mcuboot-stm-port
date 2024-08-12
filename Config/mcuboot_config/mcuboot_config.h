@@ -2,6 +2,11 @@
 #define __MCUBOOT_CONFIG_H__
 
 /*
+ * Firmware swap method
+ */
+#define MCUBOOT_SWAP_USING_MOVE 1
+
+/*
  * Signature types
  *
  * You must choose exactly one signature type - check bootloader.conf
@@ -9,23 +14,7 @@
  */
 
 /* Uncomment for RSA signature support */
-#if defined(CONFIG_ESP_SIGN_RSA)
-#define MCUBOOT_SIGN_RSA
-#if (CONFIG_ESP_SIGN_RSA_LEN != 2048 && \
-     CONFIG_ESP_SIGN_RSA_LEN != 3072)
-#error "Invalid RSA key size (must be 2048 or 3072)"
-#else
-#define MCUBOOT_SIGN_RSA_LEN CONFIG_ESP_SIGN_RSA_LEN
-#endif
-#elif defined(CONFIG_ESP_SIGN_EC256)
-#define MCUBOOT_SIGN_EC256
-#elif defined(CONFIG_ESP_SIGN_ED25519)
-#define MCUBOOT_SIGN_ED25519
-#endif
-
-#if defined(CONFIG_SECURE_FLASH_ENC_ENABLED)
-#define MCUBOOT_BOOT_MAX_ALIGN 32
-#endif
+/* #define MCUBOOT_SIGN_RSA */
 
 /*
  * Upgrade mode

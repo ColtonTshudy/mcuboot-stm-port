@@ -18,6 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <bootutil/bootutil.h>
+#include <bootutil/bootutil_log.h>
+#include <bootutil/fault_injection_hardening.h>
+#include <bootutil/image.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -63,7 +67,20 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void do_boot(struct boot_rsp *rsp)
+{
+  BOOT_LOG_INF("br_image_off = 0x%x", rsp->br_image_off);
+  BOOT_LOG_INF("ih_hdr_size = 0x%x", rsp->br_hdr->ih_hdr_size);
 
+  __disable_irq(); // prevents jump to interrupt address during boot. Must be reenabled by firmware.
+
+  uint32_t entry_addr = rsp->br_hdr->ih_hdr_size; // start address of executable code in firmware
+  // TODO: do I have to validate the header & signature myself? Or does "boot_go" do that before passing the rsp?
+  // It seems like the ESP32 port does its own validation.
+
+  __set_MSP(*(__IO uint32_t *)entry_addr);
+  ((void (*)(void))entry_addr);
+}
 /* USER CODE END 0 */
 
 /**
