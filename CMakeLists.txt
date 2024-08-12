@@ -79,15 +79,15 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${bootutil_srcs}
 )
 
-# Add include paths to vscode
-include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined include paths
-    ${BOOTUTIL_DIR}/include
-    ${BOOTUTIL_DIR}/src
-    ${TINYCRYPT_DIR}/include
-    ${TINYCRYPT_DIR}/source
-    ${CONFIG_DIR}
-)
+# # Add include paths to vscode
+# include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+#     # Add user defined include paths
+#     ${BOOTUTIL_DIR}/include
+#     ${BOOTUTIL_DIR}/src
+#     ${TINYCRYPT_DIR}/include
+#     ${TINYCRYPT_DIR}/source
+#     ${CONFIG_DIR}
+# )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE

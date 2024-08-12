@@ -1,7 +1,10 @@
 {
+    "todohighlight.isEnable": true,
     "files.associations": {
         "stm32l4xx_hal.h": "c",
-        "bootutil_public.h": "c"
+        "bootutil_public.h": "c",
+        "bootutil.h": "c",
+        "bootutil_log.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
 }
