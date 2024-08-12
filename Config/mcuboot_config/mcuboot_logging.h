@@ -1,10 +1,8 @@
-// TODO implement printf
+// TODO implement printf for stm
 
 #pragma once
 
 #include "mcuboot_config.h"
-
-extern int ets_printf(const char *fmt, ...);
 
 #define MCUBOOT_LOG_LEVEL_OFF 0
 #define MCUBOOT_LOG_LEVEL_ERROR 1
@@ -58,5 +56,9 @@ extern int ets_printf(const char *fmt, ...);
 #define MCUBOOT_LOG_DBG(_fmt, ...)
 #endif
 
-#define MCUBOOT_LOG_MODULE_DECLARE(...)
-#define MCUBOOT_LOG_MODULE_REGISTER(...)
+// #define MCUBOOT_LOG_MODULE_DECLARE(...)
+// #define MCUBOOT_LOG_MODULE_REGISTER(...)
+
+// This definition gets rid of annoying compiler warnings
+#define MCUBOOT_LOG_MODULE_DECLARE(module) extern int dummy_##module
+#define MCUBOOT_LOG_MODULE_REGISTER(module) extern int dummy_##module

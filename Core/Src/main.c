@@ -67,6 +67,12 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+/**
+ * @brief Construct a new do boot object
+ *
+ * @param rsp struct containing firmware flash offset
+ */
 void do_boot(struct boot_rsp *rsp)
 {
   BOOT_LOG_INF("br_image_off = 0x%x", rsp->br_image_off);
@@ -78,8 +84,11 @@ void do_boot(struct boot_rsp *rsp)
   // TODO: do I have to validate the header & signature myself? Or does "boot_go" do that before passing the rsp?
   // It seems like the ESP32 port does its own validation.
 
+  // Jump to executable code in firmware block 1
   __set_MSP(*(__IO uint32_t *)entry_addr);
   ((void (*)(void))entry_addr);
+
+  FIH_PANIC; /* It should not get here */
 }
 /* USER CODE END 0 */
 
