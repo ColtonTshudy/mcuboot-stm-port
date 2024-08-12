@@ -1,4 +1,13 @@
-// mcu_port.c
+/**
+ * @file stm_mcuboot.c
+ * @author Colton Tshudy (coltont@vt.edu)
+ * @brief Collection of STM32-HAL implementations for interfacing with mcuboot
+ * @version 0.1
+ * @date 2024-08-11
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 
 #include <stdlib.h>
 

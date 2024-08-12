@@ -1,9 +1,11 @@
 #pragma once
 
+#include "stm32l412xx.h"
+
 /* Magic is derived from sha256sum of the string "stmmcuboot"
  * The application header magic must match this number
  */
-#define ESP_LOAD_HEADER_MAGIC 0x135bf345
+#define STM_LOAD_HEADER_MAGIC 0x135bf345
 
 /* Load header that should be a part of application image
  * for MCUboot-Espressif port booting.
