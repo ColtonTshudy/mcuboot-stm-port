@@ -40,6 +40,9 @@ set(crypto_srcs
     ${TINYCRYPT_DIR}/source/sha256.c
     ${TINYCRYPT_DIR}/source/utils.c
 )
+set(my_srcs
+    ${CMAKE_SOURCE_DIR}/Core/Src/flash_map_backend.c
+)
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -76,6 +79,7 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    ${my_srcs}
     ${crypto_srcs}
     ${bootutil_srcs}
     ${MBEDTLS_DIR}

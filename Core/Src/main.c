@@ -116,7 +116,23 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+
   /* USER CODE BEGIN 2 */
+
+  struct boot_rsp rsp;
+  FIH_DECLARE(fih_rc, FIH_FAILURE);
+
+  MCUBOOT_LOG_ERR("*** Booting MCUboot build %s ***\n", CONFIG_MCUBOOT_VERSION);
+
+  FIH_CALL(boot_go, fih_rc, &rsp);
+
+  if (FIH_NOT_EQ(fih_rc, FIH_SUCCESS))
+  {
+    MCUBOOT_LOG_ERR("Unable to find bootable image\n");
+    FIH_PANIC;
+  }
+
+  do_boot(&rsp);
 
   /* USER CODE END 2 */
 

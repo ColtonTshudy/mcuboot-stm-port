@@ -4,8 +4,12 @@
         "stm32l4xx_hal.h": "c",
         "bootutil_public.h": "c",
         "bootutil.h": "c",
-        "bootutil_log.h": "c"
+        "bootutil_log.h": "c",
+        "flash_map_backend.h": "c",
+        "sysflash.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
     "docwriter.style": "Auto-detect",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 120
 }
